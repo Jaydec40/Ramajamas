@@ -18,6 +18,12 @@ document.getElementById("contact-button").addEventListener("click", function() {
     window.location.href = "contact.html";
 });
 
+//Redirect to online ordering
+document.getElementById("order-button").addEventListener("click", function() {
+
+    window.location.href = "https://food.google.com/u/1/chooseprovider?restaurantId=/g/1trtw26m&g2lbs=AIQllVzH9LTgabHOKJD6shQNScl25CZ-ic9p9Td7kaDU-e6WUX1N2f0coL9n-Ig7Ngcw2TIZO8vqKUZOVb6ctsdP7lXJLcfKQWpR0ghqUcFViizOV78153Hl36CSB_6knFxVqpSglC0myjmKDiiERhVbkLqzk2LCzQ%3D%3D&hl=en&gl&cs=1&ssta=1&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&gei=RsjFZfKKJIqZwbkPpZ-x0As&ei=RsjFZfKKJIqZwbkPpZ-x0As&fo_s=OA&opi=89978449&orderType=2&sei=CR2lTYunBMumEcTsZ6rAyQ6F&utm_campaign&utm_source=search";
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // image index
