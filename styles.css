@@ -1,0 +1,129 @@
+/* Global styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cursive', sans-serif;
+    background-color: #333;
+    color: white;
+}
+
+/* Top section  */
+#top-section {
+    background-image: url('rama_jamadark.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;  
+    position: relative;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+/*  Main section */
+#main-section {
+    display: flex;
+}
+
+/* Left column */
+#left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#hours-box {
+    background-color: #555;
+    padding: 20px;
+    border: 1px solid #777;
+    margin-bottom: 20px;
+}
+
+
+
+#slideshow-container {
+    max-width: 100%;
+    height: 100vh; 
+    overflow: hidden; 
+    position: relative;
+    margin: auto;
+}
+
+
+.slideshow-image {
+    width: 100%;
+    height: 50%; 
+    display: none;
+}
+#about-us-box {
+    background-color: #555;
+    padding: 10px;
+    border: 1px solid #777;
+}
+
+
+/* Right column */
+#right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+#instagram-box {
+    background-color: #555;
+    padding: 20px;
+    border: 1px solid #777;
+    margin-bottom: 20px;
+}
+
+/* Best Sellers box  */
+#best-sellers-box {
+    background-color: #800000; 
+    border: 1px solid #777;
+    text-align: center;
+    padding: 20px;
+}
+
+.box {
+    background-color: #555;
+    border: 1px solid #777;
+    text-align: center;
+    padding: 20px;
+}
+
+
+h1, h2, h3 {
+    text-shadow: 2px 2px 5px #800000; 
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Button section in footer */
+#button-section {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button styling */
+button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Cursive', sans-serif;
+}
+
+/* Button section position in footer */
+#button-section {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
