@@ -122,8 +122,12 @@ body, html {
 }
 
 @media only screen and (max-width: 768px) {
+    #best-sellers-box {
+        padding: 10px;     }
     .special-image {
         height: 15%; 
+
+        
     }
 }
 .box {
