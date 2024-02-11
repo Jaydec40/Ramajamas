@@ -130,6 +130,10 @@ body, html {
         
     }
 }
+#best-sellers-box {
+    -webkit-text-size-adjust: 100%;
+}
+
 .box {
     font-family: 'fira sans', sans-serif;
     background-color: #555;
