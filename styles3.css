@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  border: 5px solid crimson;  
+  box-sizing: border-box;
+  background-color: #555; 
+}
+
+header {
+  background-color: crimson; 
+  color: white; 
+  text-align: center;
+  padding: 1em;
+}
+
+.menu-section {
+  margin: 20px;
+  color: white
+}
+
+.menu-item {
+  margin-bottom: 1em;
+  color: white
+}
+
+.item-name {
+  font-weight: bold;
+  color: white
+}
+
+.item-description {
+  font-style: italic;
+  color: white
+}
+
+.item-price {
+  float: right;
+}
+
+#cart-section {
+  background-color: #352a2a;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#checkout-button {
+  background-color: #555;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

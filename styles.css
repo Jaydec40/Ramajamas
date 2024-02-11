@@ -7,7 +7,7 @@ body, html {
     color: white;
 }
 
-/* Top section  */
+/*Top section   */
 #top-section {
     background-image: url('rama_jamadark.jpg');
     background-size: cover;
@@ -15,11 +15,26 @@ body, html {
     height: 100vh;  
     position: relative;
     transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
+    margin: 0;  } 
+
+/*#top-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5) url('rama_jamadark.jpg') no-repeat center center/cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+
+ }  */
+
 
 /*  Main section */
 #main-section {
     display: flex;
+    margin: 0;
 }
 
 /* Left column */
@@ -27,68 +42,97 @@ body, html {
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin: 0; 
 }
 
 #hours-box {
+    font-family: 'fira sans', sans-serif;
     background-color: #555;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #777;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 }
 
+/* Media query for screens with a maximum width of 768 pixels (typical for phones) */
+@media only screen and (max-width: 768px) {
+    #hours-box {
+        padding: 10px;     }
+}
 
 
 #slideshow-container {
     max-width: 100%;
-    height: 100vh; 
-    overflow: hidden; 
+    height: 100vh;
+    overflow: hidden;
     position: relative;
-    margin: auto;
+    /*margin: auto; */
 }
-
 
 .slideshow-image {
     width: 100%;
-    height: 50%; 
+    height: 50%;
     display: none;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .slideshow-image {
+        height: 15%; 
+    }
+}
+
 #about-us-box {
+    font-family: 'fira sans', sans-serif;
     background-color: #555;
     padding: 10px;
     border: 1px solid #777;
+    
 }
-
+.about-image {
+    max-width: 100%; 
+    height: auto;   
+    display: block;  
+    margin: auto;    
+}
 
 /* Right column */
 #right-column {
+    font-family: 'fira sans', sans-serif;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center; 
+    margin: 0; 
 }
 
 #instagram-box {
     background-color: #555;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #777;
     margin-bottom: 20px;
 }
 
 /* Best Sellers box  */
 #best-sellers-box {
+    font-family: 'fira sans', sans-serif;
     background-color: #800000; 
     border: 1px solid #777;
     text-align: center;
-    padding: 20px;
+    padding: 10px; 
 }
 
+@media only screen and (max-width: 768px) {
+    .special-image {
+        height: 15%; 
+    }
+}
 .box {
+    font-family: 'fira sans', sans-serif;
     background-color: #555;
     border: 1px solid #777;
     text-align: center;
     padding: 20px;
 }
-
 
 h1, h2, h3 {
     text-shadow: 2px 2px 5px #800000; 
@@ -96,12 +140,14 @@ h1, h2, h3 {
 
 /* Footer */
 footer {
+    font-family: 'fira sans', sans-serif;
     background-color: #222;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin: 0; 
 }
 
 /* Button section in footer */
