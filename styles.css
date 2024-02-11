@@ -119,6 +119,8 @@ body, html {
     border: 1px solid #777;
     text-align: center;
     padding: 10px; 
+    width: fit-content;
+    height: fit-content;
 }
 
 @media only screen and (max-width: 768px) {
