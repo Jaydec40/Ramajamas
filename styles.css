@@ -80,6 +80,7 @@ body, html {
     .slideshow-image {
         height: auto;
         width: 100%;
+        overflow: visible;
     }
 }
 
