@@ -1,111 +1,169 @@
-/* Global styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Global Styles */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Cursive', sans-serif;
-    background-color: #333;
-    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-/* Top section  */
+/* Top Section */
 #top-section {
     background-image: url('rama_jamadark.jpg');
     background-size: cover;
     background-position: center;
-    height: 15vh;  
+    height: 40vh;
     position: relative;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/*  Main section */
+#top-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#top-section h1 {
+    position: relative;
+    color: #fff;
+    font-size: 3em;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Main Section */
 #main-section {
     display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: -50px auto 0 auto;
+    padding: 0 20px;
 }
 
-/* Left column */
+/* Left Column */
 #left-column {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-#hours-box {
-    background-color: #555;
+    min-width: 300px;
     padding: 20px;
-    border: 1px solid #777;
-    margin-bottom: 20px;
 }
 
-#about-us-box {
-    background-color: #555;
-    padding: 20px;
-    border: 1px solid #777;
-}
-
-/* pic */
-img {
-    width: 100%;
-    max-height: 100%;
-    margin-top: 20px;
-}
-
-/* Right column */
+/* Right Column */
 #right-column {
     flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+/* Info Boxes */
+.info-box {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-box h1 {
+    margin-top: 0;
+    color: #c62828;
+}
+
+.info-box p {
+    line-height: 1.6;
+}
+
+.info-box a {
+    color: #c62828;
+    text-decoration: none;
+}
+
+.info-box a:hover {
+    text-decoration: underline;
+}
+
+/* Form Styles */
+#contact-form {
     display: flex;
     flex-direction: column;
-    align-items: center; 
 }
 
-#instagram-box {
-    background-color: #555;
+#contact-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact-form button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: #c62828;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+    background-color: #a81f1f;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
     padding: 20px;
-    border: 1px solid #777;
-    margin-bottom: 20px;
-}
-
-
-#best-sellers-box {
-    background-color: #800000; 
-    border: 1px solid #777;
     text-align: center;
-    padding: 20px;
+    position: relative;
 }
 
-.box {
-    background-color: #555;
-    border: 1px solid #777;
-    text-align: center;
-    padding: 20px;
-}
-
-h1, h2, h3 {
-    text-shadow: 2px 2px 5px #800000; 
-}
-
-
-
-/* Button section in footer */
+/* Button Section in Footer */
 #button-section {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
 }
 
-/* Button styling */
-button {
-    background-color: #800000;
-    color: white;
+#button-section button {
+    background-color: #c62828;
+    color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Cursive', sans-serif;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
-/* Button section position in footer */
-#button-section {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+#button-section button:hover {
+    background-color: #a81f1f;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    #main-section {
+        flex-direction: column;
+        margin-top: -20px;
+    }
+
+    #button-section {
+        flex-direction: column;
+    }
 }

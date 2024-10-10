@@ -1,205 +1,159 @@
-/* Global styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Global Styles */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Cursive', sans-serif;
-    background-color: #333;
-    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-/*Top section   */
+/* Top Section */
 #top-section {
     background-image: url('rama_jamadark.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh;  
+    height: 60vh;
     position: relative;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-    margin: 0;  } 
-
-/*#top-section {
-    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.5) url('rama_jamadark.jpg') no-repeat center center/cover;
-    background-size: cover;
-    background-attachment: fixed;
-    background-blend-mode: overlay;
+    justify-content: center;
+}
 
- }  */
+#top-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
 
+#top-section h1 {
+    position: relative;
+    color: #fff;
+    font-size: 3em;
+    text-align: center;
+    z-index: 1;
+}
 
-/*  Main section */
+/* Main Section */
 #main-section {
     display: flex;
-    margin: 0;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: -50px auto 0 auto;
+    padding: 0 20px;
 }
 
-/* Left column */
+/* Left Column */
 #left-column {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin: 0; 
+    min-width: 300px;
+    padding: 20px;
 }
 
-#hours-box {
-    font-family: 'fira sans', sans-serif;
-    background-color: #555;
-    padding: 10px;
-    border: 1px solid #777;
-    margin-bottom: 2px;
+/* Right Column */
+#right-column {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
 }
 
-/* Media query for screens with a maximum width of 768 pixels (typical for phones) */
-@media only screen and (max-width: 768px) {
-    #hours-box {
-        padding: 10px;     }
+/* Info Boxes */
+.info-box {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.info-box h1 {
+    margin-top: 0;
+    color: #c62828;
+}
 
+.info-box p {
+    line-height: 1.6;
+}
+
+/* Images */
+.about-image, .special-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Slideshow Container */
 #slideshow-container {
-    max-width: 100%;
-    height: 100vh;
+    position: relative;
     overflow: hidden;
-    position: relative ;
-    margin: 0;
-    /*margin: auto; */
+    border-radius: 8px;
 }
 
 .slideshow-image {
     width: 100%;
-    height: 50%;
     display: none;
 }
 
-
-@media only screen and (max-width: 768px) {
-    .slideshow-image {
-        height: auto;
-        width: 100%;
-        overflow: visible;
-    }
-}
-
-#about-us-box {
-    font-family: 'fira sans', sans-serif;
-    background-color: #555;
-    padding: 10px;
-    border: 1px solid #777;
-    
-}
-.about-image {
-    max-width: 100%; 
-    height: auto;   
-    display: block;  
-    margin: auto;    
-}
-
-/* Right column */
-#right-column {
-    font-family: 'fira sans', sans-serif;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin: 0; 
-}
-
-#instagram-box {
-    background-color: #555;
-    padding: 10px;
-    border: 1px solid #777;
-    margin-bottom: 20px;
-}
-
-#best-sellers-box {
-    font-family: 'fira sans', sans-serif;
-    background-color: #555;
-    padding: 10px;
-    border: 1px solid #777;
-    
-}
-.special-image {
-    max-width: 100%; 
-    height: auto;   
-    display: block;  
-    margin: auto;    
-}
-
-
-/* Best Sellers box  
-#best-sellers-box {
-    font-family: 'fira sans', sans-serif;
-    background-color: #800000; 
-    border: 1px solid #777;
-    text-align: center;
-    padding: 10px; 
-    width: fit-content;
-    height: fit-content;
-}
-
-@media only screen and (max-width: 768px) {
-    #best-sellers-box {
-        padding: 10px;     }
-    .special-image {
-        height: 15%; 
-
-        
-    }
-}
-#best-sellers-box {
-    -webkit-text-size-adjust: 100%;
-}
-*/
-.box {
-    font-family: 'fira sans', sans-serif;
-    background-color: #555;
-    border: 1px solid #777;
-    text-align: center;
-    padding: 20px;
-}
-
-h1, h2, h3 {
-    text-shadow: 2px 2px 5px #800000; 
+.slideshow-image.active {
+    display: block;
 }
 
 /* Footer */
 footer {
-    font-family: 'fira sans', sans-serif;
     background-color: #222;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin: -10px; 
-    margin-left: 0px;
-    
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
 }
 
-/* Button section in footer */
+footer a {
+    color: #c62828;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Button Section in Footer */
 #button-section {
+    margin-top: 20px;
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
 }
 
-/* Button styling */
-button {
-    background-color: #800000;
-    color: white;
+#button-section button {
+    background-color: #c62828;
+    color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Cursive', sans-serif;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
-/* Button section position in footer */
-#button-section {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+#button-section button:hover {
+    background-color: #a81f1f;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    #main-section {
+        flex-direction: column;
+        margin-top: -20px;
+    }
+
+    #button-section {
+        flex-direction: column;
+    }
 }

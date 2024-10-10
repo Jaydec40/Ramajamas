@@ -3,88 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rama-Jama's Diner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
-    <title>Rama-Jamas</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="top-section">
-        
-    </div>
+    <section id="top-section">
+    </section>
 
-    <div id="main-section">
-        
+    <!-- Main Section -->
+    <main id="main-section">
+        <!-- Left Column -->
         <div id="left-column">
-            <!-- About Us box -->
-            <div id="about-us-box">
+            <!-- About Us Box -->
+            <div class="info-box" id="about-us-box">
                 <h1>About Us</h1>
-                <img class="about-image" src="about.jpg" alt="About Us"> 
-                <p>Welcome to Rama Jamas, where culinary excellence meets the heart of the Crimson Tide experience. Nestled just outside the iconic Bryant-Denny Stadium, we take pride in being more than just a restaurant – we are a tradition, a gathering place, and a celebration of the vibrant spirit that defines Alabama football.</p>
+                <img class="about-image" src="about.jpg" alt="About Us">
+                <p>
+                    Welcome to Rama-Jama's, where culinary excellence meets the heart of the Crimson Tide experience. Nestled just outside the iconic Bryant-Denny Stadium, we take pride in being more than just a restaurant – we are a tradition, a gathering place, and a celebration of the vibrant spirit that defines Alabama football.
+                </p>
             </div>
 
-            <div id="hours-box">
+            <!-- Hours Box -->
+            <div class="info-box" id="hours-box">
                 <h1>Hours</h1>
-                <h3>
-                    Monday - Friday: 7:00am - 4:00pm
-                    <br/>
-                    Saturday: 7:00am - 4:00pm
-                    <br/>
-                    Sunday: 9:00am - 2:00pm
-                    <br/>
-                    Location:1000 Paul W Bryant Dr, Tuscaloosa, AL 35401 
-                    <br/>
+                <p>
+                    <strong>Monday - Friday:</strong> 7:00 AM - 4:00 PM<br>
+                    <strong>Saturday:</strong> 7:00 AM - 4:00 PM<br>
+                    <strong>Sunday:</strong> 9:00 AM - 2:00 PM<br>
+                    <strong>Location:</strong> 1000 Paul W Bryant Dr, Tuscaloosa, AL 35401<br>
                     Right outside Bryant-Denny Stadium!
-                </h3>
+                </p>
             </div>
-            
-        
-            <!-- Slideshow container -->
+
+            <!-- Slideshow Container -->
             <div id="slideshow-container">
-                <img class="slideshow-image" src="celebration1.jpg">
-                <img class="slideshow-image" src="celebration2.jpg" >
-                <img class="slideshow-image" src="celebration5.jpg" >
-                <img class="slideshow-image" src="celebration4.jpg">
+                <img class="slideshow-image" src="celebration1.jpg" alt="Celebration 1">
+                <img class="slideshow-image" src="celebration2.jpg" alt="Celebration 2">
+                <img class="slideshow-image" src="celebration5.jpg" alt="Celebration 3">
+                <img class="slideshow-image" src="celebration4.jpg" alt="Celebration 4">
             </div>
-           
-            
         </div>
 
-          
-
-        
+        <!-- Right Column -->
         <div id="right-column">
-            <!-- Instagram code use top link to change ad figure out how to automatically update -->
-            <div id="instagram-box">
+            <!-- Instagram Embed -->
+            <div class="info-box" id="instagram-box">
+                <h1>Follow Us on Instagram</h1>
                 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C_nikAUO-Iz/" data-instgrm-version="13"></blockquote>
                 <script async src="//www.instagram.com/embed.js"></script>
             </div>
 
-            <!-- Best Sellers box -->
-            <div id="best-sellers-box" class="box">
+            <!-- Specials Box -->
+            <div class="info-box" id="specials-box">
                 <h1>Weekend Specials!</h1>
-                <img class="special-image" src="specials.jpg" alt="Specials!">
+                <img class="special-image" src="specials.jpg" alt="Specials">
                 <p>Discover our deals for the weekends!</p>
-                
-                
             </div>
         </div>
-    </div>
+    </main>
 
+    <!-- Footer -->
     <footer>
-        <p>
-            Contact Us: <a href="mailto:ramajamas18@gmail.com">ramajamas18@gmail.com</a>
-        </p>
-        
-        
-        <section id="button-section">
+        <p>Contact Us: <a href="mailto:ramajamas18@gmail.com">ramajamas18@gmail.com</a></p>
+        <!-- Button Section -->
+        <div id="button-section">
             <button id="menu-button">Menu</button>
             <button id="contact-button">Contact Us</button>
             <button id="order-button">Order Online</button>
-        </section>
+        </div>
     </footer>
 
+    <!-- Include your JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -2,55 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Rama-Jamas</title>
+    <title>Contact Us - Rama-Jama's Diner</title>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.6.2/email.min.js"></script>
+    <!-- Initialize EmailJS -->
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("TxWfHxkiwwDm-p3Sx"); 
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <div id="top-section">
-       
-    </div>
+    <!-- Top Section -->
+    <section id="top-section">
+        <h1>Contact Us</h1>
+    </section>
 
-    <div id="main-section">
-        
+    <!-- Main Section -->
+    <main id="main-section">
+        <!-- Left Column -->
         <div id="left-column">
-            <div class="box">
+            <div class="info-box">
                 <h1>Contact Information</h1>
-                <p>Email: ramajamas18@gmail.com</p>
-                <p>Phone:  (205) 737-7524</p>
-                <p>Address: 1000 Paul W Bryant Dr, Tuscaloosa, AL 35401
+                <p><strong>Email:</strong> <a href="mailto:ramajamas18@gmail.com">ramajamas18@gmail.com</a></p>
+                <p><strong>Phone:</strong> (205) 737-7524</p>
+                <p><strong>Address:</strong> 1000 Paul W Bryant Dr, Tuscaloosa, AL 35401</p>
+            </div>
         </div>
 
-        
+        <!-- Right Column -->
         <div id="right-column">
-            <div class="box">
-                <h1>Contact Us</h1>
-                <form action="#" method="post" id="contact-form">
+            <div class="info-box">
+                <h1>Get in Touch</h1>
+                <form id="contact-form">
                     <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="from_name" required>
 
                     <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="from_email" required>
 
-                    <label for="message"> <br> Your Message:<br></label>
+                    <label for="message">Your Message:</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
 
                     <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
-    </div>
+    </main>
 
+    <!-- Footer -->
     <footer>
-       
-        
-        <section id="button-section">
+        <!-- Button Section -->
+        <div id="button-section">
             <button id="menu-button">Menu</button>
             <button id="contact-button">Contact Us</button>
             <button id="order-button">Order Online</button>
-        </section>
+        </div>
     </footer>
 
+    <!-- Include your JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

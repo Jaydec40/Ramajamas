@@ -2,116 +2,193 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Restaurant Menu</title>
+  <title>Rama-Jama's Menu</title>
+  <!-- Include Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+  <!-- Link to your CSS file -->
   <link rel="stylesheet" href="styles3.css">
 </head>
 <body>
   <header>
     <h1>Rama-Jama's Menu</h1>
   </header>
- 
-  
-  <div class="menu-section">
-    <h2>Breakfast</h2>
-    <div class="menu-item">
-      <span class="item-name">#1</span> <span class="item-price">$6.99</span>
-      <div class="item-description">Two eggs, bacon or sausage, grits or hashbrowns, and biscuit or toast</div>
+
+  <main>
+    <!-- Breakfast Section -->
+    <section class="menu-section">
+      <h2>Breakfast</h2>
       
-    </div>
-    <div class="menu-item">
-      <span class="item-name">#2</span>  <span class="item-price">$8.99</span>
-      <div class="item-description"> Two eggs, smoked ham, grits or hashbrowns, and biscuit or toast </div>
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">#1</span>
+          <p class="item-description">Two eggs, bacon or sausage, grits or hashbrowns, and biscuit or toast</p>
+        </div>
+        <span class="item-price">$6.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">#2</span>
+          <p class="item-description">Two eggs, smoked ham, grits or hashbrowns, and biscuit or toast</p>
+        </div>
+        <span class="item-price">$8.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">#3</span>
+          <p class="item-description">Two eggs, two pancakes, and biscuit or toast</p>
+        </div>
+        <span class="item-price">$6.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">#4</span>
+          <p class="item-description">Two pancakes, bacon or sausage</p>
+        </div>
+        <span class="item-price">$8.99</span>
+      </div>
+    </section>
+
+    <!-- Biscuits Section -->
+    <section class="menu-section">
+      <h2>Biscuits</h2>
       
-    </div>
-     
-    <div class="menu-item">
-        <span class="item-name">#3</span> <span class="item-price">$6.99</span>
-        <div class="item-description"> Two eggs, two pancakes, and buiscuit or toast </div>
-      </div>
       <div class="menu-item">
-        <span class="item-name">#4</span> <span class="item-price">$8.99</span>
-        <div class="item-description"> Two pancakes, bacon or sausage </div>
+        <div class="item-details">
+          <span class="item-name">Plain Biscuit</span>
+          <p class="item-description">Freshly baked plain biscuit</p>
+        </div>
+        <span class="item-price">$0.99</span>
       </div>
-     
-  </div>
-
-  <div class="menu-section">
-    <h2> Biscuit</h2>
-    <div class="menu-item">
-      <span class="item-name">Plain</span> <span class="item-price">$.99</span>
-      <div class="item-description">Plain biscuit</div>
-    </div>
-    
-    <div class="menu-item">
-        <span class="item-name">Ham</span> <span class="item-price">$2.99</span>
-        <div class="item-description">Grilled ham in a biscuit</div>
-      </div>
+      
+      <!-- New Biscuit Items -->
       <div class="menu-item">
-        <span class="item-name">Chicken</span> <span class="item-price">$2.99</span>
-        <div class="item-description">Grilled chicken on a biscuit</div>
+        <div class="item-details">
+          <span class="item-name">Ham Biscuit</span>
+          <p class="item-description">Grilled ham on a biscuit</p>
+        </div>
+        <span class="item-price">$2.99</span>
       </div>
+
       <div class="menu-item">
-        <span class="item-name">Sausage</span> <span class="item-price">$2.79</span>
-        <div class="item-description">Sausage on a biscuit</div>
-        <div class="menu-item">
-            <span class="item-name">Bacon</span> <span class="item-price">$2.79</span>
-            <div class="item-description">Bacon on a biscuit</div>
-          </div>
-          <div class="menu-item">
-            <span class="item-name">Sausage Gravey</span> <span class="item-price">$3.49</span>
-            <div class="item-description">Sausage on a biscuit with gravey</div>
-          </div>
-          
-          <h2> French toast</h2>
-          <div class="menu-item">
-            <span class="item-name">French toast</span> <span class="item-price">$7.99</span>
-            <div class="item-description">
-
-            </div>
-            <h2>Sandwich items</h2>
-            <div class="menu-item">
-              <span class="item-name">BLT</span> <span class="item-price">$6.99</span>
-              <div class="item-description">Bacon, lettuce, tomato</div>
-              
-               </div>
-             <div class="menu-item">
-                <span class="item-name"></span> Cheeseburger<span class="item-price">$7.99</span>
-                <div class="item-description"></div>         
-              </div>
-              
-              <div class="menu-item">
-                <span class="item-name">Hamburger</span> <span class="item-price">$7.49</span>
-                <div class="item-description"></div>
-              </div>
-              <div class="menu-item">
-                <span class="item-name">Chicken Basket</span> <span class="item-price">$10.99</span>
-                <div class="item-description">Chicken and fries!</div>
-              </div>
-              <div class="menu-item">
-                <span class="item-name">Hot Dog</span> <span class="item-price">$2.59</span>
-                <div class="item-description"></div>
-
-                
-              </div>
-              <h2> Sides</h2>
-              <div class="menu-item">
-                <span class="item-name">Fries</span> <span class="item-price">$1.99</span>
-                <div class="item-description"></div>
-              </div>
-              <div class="menu-item">
-                <span class="item-name">Onion Rings</span> <span class="item-price">$2.99</span>
-                <div class="item-description"></div>
-              </div>
-              
-            </body>
-            </html>
-
-
-
-
+        <div class="item-details">
+          <span class="item-name">Chicken Biscuit</span>
+          <p class="item-description">Grilled chicken on a biscuit</p>
+        </div>
+        <span class="item-price">$2.99</span>
       </div>
 
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Sausage Biscuit</span>
+          <p class="item-description">Sausage on a biscuit</p>
+        </div>
+        <span class="item-price">$2.79</span>
       </div>
-  </div>
 
-  
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Bacon Biscuit</span>
+          <p class="item-description">Bacon on a biscuit</p>
+        </div>
+        <span class="item-price">$2.79</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Sausage Gravy Biscuit</span>
+          <p class="item-description">Sausage on a biscuit with gravy</p>
+        </div>
+        <span class="item-price">$3.49</span>
+      </div>
+    </section>
+
+    <!-- French Toast Section -->
+    <section class="menu-section">
+      <h2>French Toast</h2>
+      
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">French Toast</span>
+          <p class="item-description">Delicious French toast served with syrup</p>
+        </div>
+        <span class="item-price">$7.99</span>
+      </div>
+    </section>
+
+    <!-- Sandwich Items Section -->
+    <section class="menu-section">
+      <h2>Sandwich Items</h2>
+      
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">BLT</span>
+          <p class="item-description">Bacon, lettuce, tomato sandwich</p>
+        </div>
+        <span class="item-price">$6.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Cheeseburger</span>
+          <p class="item-description">Juicy cheeseburger with all the fixings</p>
+        </div>
+        <span class="item-price">$7.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Hamburger</span>
+          <p class="item-description">Classic hamburger with fresh ingredients</p>
+        </div>
+        <span class="item-price">$7.49</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Chicken Basket</span>
+          <p class="item-description">Crispy chicken tenders with fries</p>
+        </div>
+        <span class="item-price">$10.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Hot Dog</span>
+          <p class="item-description">Grilled hot dog on a toasted bun</p>
+        </div>
+        <span class="item-price">$2.59</span>
+      </div>
+
+      <!-- Add other sandwich items similarly -->
+    </section>
+
+    <!-- Sides Section -->
+    <section class="menu-section">
+      <h2>Sides</h2>
+      
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Fries</span>
+          <p class="item-description">Crispy golden fries</p>
+        </div>
+        <span class="item-price">$1.99</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="item-details">
+          <span class="item-name">Onion Rings</span>
+          <p class="item-description">Delicious onion rings</p>
+        </div>
+        <span class="item-price">$2.99</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Rama-Jama's Diner</p>
+  </footer>
+</body>
+</html>
