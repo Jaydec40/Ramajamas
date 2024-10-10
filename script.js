@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
                 fadeIn(slideshowImages[currentImageIndex]);
             }, 1500); // Delay between fade out and fade in
-        }
+        }  
 
         // Fade out function
         function fadeOut(element) {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Fade in function
-        function fadeIn(element) {
+       function fadeIn(element) {
             element.style.display = 'block';
             let opacity = 0;
             element.style.opacity = opacity;
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Start the slideshow
-        setInterval(showNextImage, 2500); // Change image every 4 seconds
+        setInterval(showNextImage, 4000); // Change image every 4 seconds
     }
 
     // Form Submission 

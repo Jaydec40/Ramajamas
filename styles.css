@@ -8,6 +8,7 @@ body, html {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Top Section */
@@ -54,6 +55,7 @@ body, html {
     flex: 1;
     min-width: 300px;
     padding: 20px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 /* Right Column */
@@ -61,6 +63,7 @@ body, html {
     flex: 1;
     min-width: 300px;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Info Boxes */
@@ -84,9 +87,10 @@ body, html {
 /* Images */
 .about-image, .special-image {
     width: 100%;
+    position: center;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Slideshow Container */
@@ -94,11 +98,16 @@ body, html {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    width: 100%; 
+    max-width: 100%; 
 }
 
 .slideshow-image {
     width: 100%;
-    display: none;
+    height: auto;
+    display: relative;
+    overflow: hidden;
+    
 }
 
 .slideshow-image.active {
@@ -109,7 +118,7 @@ body, html {
 footer {
     background-color: #222;
     color: #fff;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     position: relative;
 }
@@ -129,6 +138,7 @@ footer a:hover {
     display: flex;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
 }
 
 #button-section button {
@@ -155,5 +165,11 @@ footer a:hover {
 
     #button-section {
         flex-direction: column;
+        align-items: center;
+    }
+
+    #top-section h1 {
+        font-size: 2em;
+        padding: 0 10px;
     }
 }
