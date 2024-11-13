@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Rama-Jama's</title>
+
+  <link rel="stylesheet" href="styles3.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init('TxWfHxkiwwDm-p3Sx'); 
+  })();
+</script>
+  <!-- Navigation Bar -->
+  <nav id="navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li>
+        <a href="cart.html" id="cart-link">
+          <i class="fas fa-shopping-cart" id="cart-icon"></i>
+          <span id="cart-count">0</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Checkout</h1>
+  </header>
+
+  <main id="checkout-container">
+    <!-- Order Summary -->
+    <section id="order-summary">
+      <h2>Your Order</h2>
+      <!-- Order items will be displayed here -->
+    </section>
+  
+
+    <!-- Customer Information Form -->
+    <section id="customer-info">
+      <h2>Customer Information</h2>
+      <form id="checkout-form">
+        <!-- Contact Information -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <!-- Pickup Date and Time -->
+        <label for="pickup-date">Pickup Date:</label>
+        <input type="date" id="pickup-date" name="pickup-date" required>
+
+        <label for="pickup-time">Pickup Time:</label>
+        <input type="time" id="pickup-time" name="pickup-time" required>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submit-order">Submit Order</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Rama-Jama's Diner</p>
+  </footer>
+
+
+ 
+  <script src="menu.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
