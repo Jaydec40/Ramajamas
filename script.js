@@ -1,130 +1,146 @@
-// Initialize the scripts 
+/*****************************************************
+ * script.js
+ * - Handles:
+ *   1) Page behavior (slideshow, nav clicks)
+ *   2) Global cart logic (add/remove items, localStorage)
+ *   3) Checkout form submission with fetch to /api/orders
+ *****************************************************/
+
+let cart = []; // global cart array
+
+// ========== 1) PAGE BEHAVIOR / SCROLL / SLIDESHOW ==========
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Scroll effect for Top Section
-    document.addEventListener('scroll', function() {
-        let topSection = document.getElementById('top-section');
-        if (topSection) {
-            let scrolled = window.pageYOffset;
-            let rate = scrolled * 0.5;
 
-            topSection.style.opacity = 1 - scrolled / 400;
-            topSection.style.transform = 'translateY(' + rate + 'px)';
-        }
+  // Simple scroll effect for top-section
+  document.addEventListener('scroll', function() {
+    let topSection = document.getElementById('top-section');
+    if (topSection) {
+      let scrolled = window.pageYOffset;
+      let rate = scrolled * 0.5;
+      topSection.style.opacity = 1 - scrolled / 400;
+      topSection.style.transform = 'translateY(' + rate + 'px)';
+    }
+  });
+
+  // Menu Button
+  const menuButton = document.getElementById("menu-button");
+  if (menuButton) {
+    menuButton.addEventListener("click", function() {
+      window.location.href = "menu.html";
     });
+  }
 
-    
-    // Menu Button
-    const menuButton = document.getElementById("menu-button");
-    if (menuButton) {
-        menuButton.addEventListener("click", function() {
-            window.location.href = "menu.html";
-        });
-    }
+  // Contact Button
+  const contactButton = document.getElementById("contact-button");
+  if (contactButton) {
+    contactButton.addEventListener("click", function() {
+      window.location.href = "contact.html";
+    });
+  }
 
-    // Contact Button
-    const contactButton = document.getElementById("contact-button");
-    if (contactButton) {
-        contactButton.addEventListener("click", function() {
-            window.location.href = "contact.html";
-        });
-    }
+  // Slideshow
+  const slideshowImages = document.querySelectorAll('.slideshow-image');
+  let currentImageIndex = 0;
 
-    // Order Button
-    const orderButton = document.getElementById("order-button");
-    if (orderButton) {
-        orderButton.addEventListener("click", function() {
-            window.location.href = "https://food.google.com/u/1/chooseprovider?restaurantId=/g/1trtw26m&...";
-        });
-    }
+  if (slideshowImages.length > 0) {
+    slideshowImages.forEach((img, index) => {
+      img.style.opacity = 0;
+      img.style.display = 'none';
+    });
+    // Show the first image
+    slideshowImages[currentImageIndex].style.display = 'block';
+    slideshowImages[currentImageIndex].style.opacity = 1;
 
-    // Slideshow Functionality
-    const slideshowImages = document.querySelectorAll('.slideshow-image');
-    let currentImageIndex = 0;
-
-    if (slideshowImages.length > 0) {
-        
-        slideshowImages.forEach((img, index) => {
-            img.style.opacity = 0;
-            img.style.display = 'none';
-        });
-
-        // Show the first image
-        slideshowImages[currentImageIndex].style.display = 'block';
-        slideshowImages[currentImageIndex].style.opacity = 1;
-
-        // Function to show the next image
-        function showNextImage() {
-            fadeOut(slideshowImages[currentImageIndex]);
-
-            setTimeout(function () {
-                currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
-                fadeIn(slideshowImages[currentImageIndex]);
-            }, 1500); // Delay between fade out and fade in
-        }  
-
-        // Fade out function
-        function fadeOut(element) {
-            let opacity = 1;
-            element.style.opacity = opacity;
-            const fadeOutInterval = setInterval(function () {
-                if (opacity > 0) {
-                    opacity -= 0.1;
-                    element.style.opacity = opacity;
-                } else {
-                    clearInterval(fadeOutInterval);
-                    element.style.display = 'none';
-                }
-            }, 100); // Adjust duration as needed
+    // Function to show the next image
+    function showNextImage() {
+      fadeOut(slideshowImages[currentImageIndex]);
+      setTimeout(function () {
+        currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
+        fadeIn(slideshowImages[currentImageIndex]);
+      }, 1500);
+    }  
+    function fadeOut(element) {
+      let opacity = 1;
+      element.style.opacity = opacity;
+      const fadeOutInterval = setInterval(function () {
+        if (opacity > 0) {
+          opacity -= 0.1;
+          element.style.opacity = opacity;
+        } else {
+          clearInterval(fadeOutInterval);
+          element.style.display = 'none';
         }
-
-        // Fade in function
-       function fadeIn(element) {
-            element.style.display = 'block';
-            let opacity = 0;
-            element.style.opacity = opacity;
-            const fadeInInterval = setInterval(function () {
-                if (opacity < 1) {
-                    opacity += 0.1;
-                    element.style.opacity = opacity;
-                } else {
-                    clearInterval(fadeInInterval);
-                }
-            }, 100); // Adjust duration as needed
+      }, 100);
+    }
+    function fadeIn(element) {
+      element.style.display = 'block';
+      let opacity = 0;
+      element.style.opacity = opacity;
+      const fadeInInterval = setInterval(function () {
+        if (opacity < 1) {
+          opacity += 0.1;
+          element.style.opacity = opacity;
+        } else {
+          clearInterval(fadeInInterval);
         }
-
-        // Start the slideshow
-        setInterval(showNextImage, 4000); // Change image every 4 seconds
+      }, 100);
     }
+    setInterval(showNextImage, 4000);
+  }
 
-    // Form Submission 
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+  // ========== 2) CART INITIALIZATION ==========
 
-            // Send form data using EmailJS
-            emailjs.sendForm('service_db9lnnm', 'ramas_confirmation1', this)
-                .then(function() {
-                    alert('Your message has been sent successfully!');
-                    contactForm.reset(); // Reset the form after successful submission
-                }, function(error) {
-                    console.error('Failed to send message:', error);
-                    alert('There was an error sending your message. Please try again later.');
-                });
-        });
+  // Load cart from localStorage if available
+  if (localStorage.getItem('cart')) {
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+
+  // Update cart count on page load
+  updateCartCount();
+
+  // Check if we are on the menu page => render menu
+  if (document.getElementById('menu-container')) {
+    renderMenu();
+  }
+
+  // Check if we are on the cart page => display the cart
+  if (document.getElementById('cart-container')) {
+    displayCart();
+    const checkoutButton = document.getElementById('checkout-button');
+    if (checkoutButton) {
+      checkoutButton.addEventListener('click', function() {
+        // For your site, we just redirect to checkout
+        window.location.href = 'checkout.html';
+      });
     }
+  }
+
+  // Check if we are on the checkout page
+  if (document.getElementById('checkout-container')) {
+    displayOrderSummary();
+
+    // Set min date for pickup date
+    setMinPickupDate();
+
+    // Handle form submission
+    const checkoutForm = document.getElementById('checkout-form');
+    checkoutForm.addEventListener('submit', handleFormSubmission);
+  }
+
+  // Cart nav link
+  const cartLink = document.getElementById('cart-link');
+  if (cartLink) {
+    cartLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      window.location.href = 'cart.html';
+    });
+  }
 });
 
+// ========== 3) CART UTILS ==========
 
-// Global variables
-let cart = [];
-
-// Load cart from localStorage if available
-if (localStorage.getItem('cart')) {
-  cart = JSON.parse(localStorage.getItem('cart'));
-}
-
-// Function to update the cart count in the navigation
+// Update the little cart count in nav
 function updateCartCount() {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const cartCountElement = document.getElementById('cart-count');
@@ -133,10 +149,9 @@ function updateCartCount() {
   }
 }
 
-// Function to render the menu items dynamically
+// Render the menu items
 function renderMenu() {
   const menuContainer = document.getElementById('menu-container');
-
   menuItems.forEach(category => {
     // Create category section
     const section = document.createElement('section');
@@ -186,10 +201,14 @@ function renderMenu() {
   });
 }
 
-// Function to open the customization modal for an item
+// Open customization modal
 function openCustomizationModal(itemId) {
   const item = getItemById(itemId);
-
+  console.log("openCustomizationModal called with item:", item);
+  if (!item) {
+    console.error('Item not found for id:', itemId);
+    return;
+  }
   // Create modal elements
   const modalOverlay = document.createElement('div');
   modalOverlay.classList.add('modal-overlay');
@@ -275,6 +294,15 @@ function openCustomizationModal(itemId) {
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('customize-button')) {
+        console.log('Customize button clicked, itemId:', event.target.dataset.itemId);
+        const itemId = event.target.dataset.itemId;
+        openCustomizationModal(itemId);
+      }
+    });
+    
+
     const selectedOptions = {};
     item.options.forEach(option => {
       if (option.multiple) {
@@ -297,6 +325,7 @@ function openCustomizationModal(itemId) {
         selectedOptions[option.name] = selected;
       }
     });
+    console.log(selectedOptions);
 
     const orderItem = {
       id: item.id,
@@ -314,7 +343,6 @@ function openCustomizationModal(itemId) {
   });
 }
 
-// Function to get item by ID
 function getItemById(id) {
   for (const category of menuItems) {
     for (const item of category.items) {
@@ -326,34 +354,41 @@ function getItemById(id) {
   return null;
 }
 
-// Function to add item to cart
 function addToCart(orderItem) {
-  // Check if item with same options already exists
+  // Ensure orderItem.options is defined; default to an empty object if not
+  orderItem.options = orderItem.options || {};
+
+  // Debug: Log the orderItem to verify its options property
+  console.log('Adding to cart:', orderItem);
+
+  // Check if an item with the same id and options already exists in the cart
   const existingItemIndex = cart.findIndex(cartItem => {
-    return cartItem.id === orderItem.id && JSON.stringify(cartItem.options) === JSON.stringify(orderItem.options);
+    // Ensure cart item has an options property
+    cartItem.options = cartItem.options || {};
+    return cartItem.id === orderItem.id &&
+           JSON.stringify(cartItem.options) === JSON.stringify(orderItem.options);
   });
 
   if (existingItemIndex > -1) {
-    // Update quantity
+    // Update quantity if item already exists
     cart[existingItemIndex].quantity += orderItem.quantity;
   } else {
     // Add new item
     cart.push(orderItem);
   }
 
-  // Update localStorage
+  // Update localStorage and UI
   localStorage.setItem('cart', JSON.stringify(cart));
-
   alert(`${orderItem.name} has been added to your cart!`);
-
   updateCartCount();
 }
 
-// Function to display cart contents on cart.html
+
+// Display cart on cart.html
 function displayCart() {
   const cartContainer = document.getElementById('cart-container');
   cartContainer.innerHTML = ''; // Clear previous content
-
+  console.log("Current cart data:", cart);
   if (cart.length === 0) {
     cartContainer.innerHTML = '<p>Your cart is empty.</p>';
     return;
@@ -390,7 +425,6 @@ function displayCart() {
     quantityInput.value = item.quantity;
     quantityInput.min = 1;
     quantityInput.dataset.index = index;
-
     quantityInput.addEventListener('change', updateQuantity);
     quantityLabel.appendChild(quantityInput);
     itemControls.appendChild(quantityLabel);
@@ -406,7 +440,6 @@ function displayCart() {
     itemControls.appendChild(removeButton);
 
     cartItem.appendChild(itemControls);
-
     cartContainer.appendChild(cartItem);
   });
 
@@ -434,8 +467,13 @@ function displayCart() {
   }
 }
 
-// Helper function to format options for display
+// Format options
 function formatOptions(options) {
+
+  if (!options) {
+    return 'None';
+  }
+
   return Object.entries(options).map(([key, value]) => {
     if (Array.isArray(value)) {
       return `${key}: ${value.join(', ')}`;
@@ -445,7 +483,7 @@ function formatOptions(options) {
   }).join('; ');
 }
 
-// Function to update quantity in cart
+// Update quantity in cart
 function updateQuantity(event) {
   const index = event.target.dataset.index;
   const newQuantity = parseInt(event.target.value);
@@ -457,7 +495,7 @@ function updateQuantity(event) {
   updateCartCount();
 }
 
-// Remove item from cart
+// Remove item
 function removeFromCart(event) {
   const index = event.target.dataset.index;
   cart.splice(index, 1);
@@ -466,229 +504,198 @@ function removeFromCart(event) {
   updateCartCount();
 }
 
-// Event listener for document ready
-document.addEventListener('DOMContentLoaded', function() { 
 
-if (document.getElementById('checkout-container')) {
-        setMinPickupDate();
-}
 
-    // Check if we are on the checkout page
-  if (document.getElementById('checkout-container')) {
-    // Display the order summary
-    displayOrderSummary();
-
-    // Handle form submission
-    const checkoutForm = document.getElementById('checkout-form');
-    checkoutForm.addEventListener('submit', handleFormSubmission);
-  }
-  // Update cart count on page load
-  updateCartCount();
-
-  // Check if we are on the menu page
-  if (document.getElementById('menu-container')) {
-    // Render menu
-    renderMenu();
-  }
-
-  // Event for customize buttons
-  document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('customize-button')) {
-      const itemId = event.target.dataset.itemId;
-      openCustomizationModal(itemId);
-    }
-  });
-
-  // Check if on the cart page
-  if (document.getElementById('cart-container')) {
-    displayCart();
-
-    // Handle checkout button
-    const checkoutButton = document.getElementById('checkout-button');
-    if (checkoutButton) {
-      checkoutButton.addEventListener('click', function() {
-        // Implement checkout functionality or redirect to a checkout page
-        alert('Proceeding to checkout...');
-      });
-    }
-  }
-
-  
-  const cartLink = document.getElementById('cart-link');
-  if (cartLink) {
-    cartLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      window.location.href = 'cart.html';
-    });
-  }
-});
+// ========== 4) CHECKOUT FUNCTIONS ==========
 
 function displayOrderSummary() {
-    const orderSummary = document.getElementById('order-summary');
-    const orderItemsContainer = document.createElement('div');
-  
-    if (cart.length === 0) {
-      orderSummary.innerHTML = '<p>Your cart is empty.</p>';
-      return;
-    }
-  
-    cart.forEach(item => {
-      const orderItem = document.createElement('div');
-      orderItem.classList.add('order-item');
-  
-      const itemDetails = document.createElement('div');
-      itemDetails.classList.add('order-item-details');
-  
-      const itemName = document.createElement('h3');
-      itemName.textContent = `${item.name} x${item.quantity}`;
-      itemDetails.appendChild(itemName);
-  
-      const itemOptions = document.createElement('p');
-      itemOptions.textContent = `Options: ${formatOptions(item.options)}`;
-      itemDetails.appendChild(itemOptions);
-  
-      const itemInstructions = document.createElement('p');
-      itemInstructions.textContent = `Special Instructions: ${item.instructions || 'None'}`;
-      itemDetails.appendChild(itemInstructions);
-  
-      orderItem.appendChild(itemDetails);
-  
-      const itemPrice = document.createElement('p');
-      itemPrice.classList.add('order-item-price');
-      itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-      orderItem.appendChild(itemPrice);
-  
-      orderItemsContainer.appendChild(orderItem);
-    });
-  
-    // Display total price
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    const totalDisplay = document.createElement('h3');
-    totalDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`;
-    totalDisplay.style.textAlign = 'right';
-  
-    orderSummary.appendChild(orderItemsContainer);
-    orderSummary.appendChild(totalDisplay);
+  const orderSummary = document.getElementById('order-summary');
+  const orderItemsContainer = document.createElement('div');
+
+  if (cart.length === 0) {
+    orderSummary.innerHTML = '<p>Your cart is empty.</p>';
+    return;
   }
-// Function to validate the form
-function validateForm() {
-    const form = document.getElementById('checkout-form');
-    let isValid = true;
-    const errorMessages = [];
-  
-    // Get form values
-    const name = form.elements['name'].value.trim();
-    const email = form.elements['email'].value.trim();
-    const phone = form.elements['phone'].value.trim();
-    const pickupDate = form.elements['pickup-date'].value;
-    const pickupTime = form.elements['pickup-time'].value;
-  
-    // Validate Name
-    if (name === '') {
-      isValid = false;
-      errorMessages.push('Name is required.');
-    }
-  
-    // Validate Email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      isValid = false;
-      errorMessages.push('Please enter a valid email address.');
-    }
-  
-    // Validate Phone
-    const phonePattern = /^\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/;
-    if (!phonePattern.test(phone)) {
-  isValid = false;
-  document.getElementById('phone-error').textContent = 'Please enter a valid phone number.';
+
+  cart.forEach(item => {
+    const orderItem = document.createElement('div');
+    orderItem.classList.add('order-item');
+
+    const itemDetails = document.createElement('div');
+    itemDetails.classList.add('order-item-details');
+
+    const itemName = document.createElement('h3');
+    itemName.textContent = `${item.name} x${item.quantity}`;
+    itemDetails.appendChild(itemName);
+
+    const itemOptions = document.createElement('p');
+    itemOptions.textContent = `Options: ${formatOptions(item.options)}`;
+    itemDetails.appendChild(itemOptions);
+
+    const itemInstructions = document.createElement('p');
+    itemInstructions.textContent = `Special Instructions: ${item.instructions || 'None'}`;
+    itemDetails.appendChild(itemInstructions);
+
+    orderItem.appendChild(itemDetails);
+
+    const itemPrice = document.createElement('p');
+    itemPrice.classList.add('order-item-price');
+    itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+    orderItem.appendChild(itemPrice);
+
+    orderItemsContainer.appendChild(orderItem);
+  });
+
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalDisplay = document.createElement('h3');
+  totalDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`;
+  totalDisplay.style.textAlign = 'right';
+
+  orderSummary.appendChild(orderItemsContainer);
+  orderSummary.appendChild(totalDisplay);
 }
-  
-    // Validate Pickup Date and Time
-    if (pickupDate === '') {
-      isValid = false;
-      errorMessages.push('Pickup date is required.');
-    }
-  
-    if (pickupTime === '') {
-      isValid = false;
-      errorMessages.push('Pickup time is required.');
-    }
-  
-    // Check if cart is empty
-    if (cart.length === 0) {
-      isValid = false;
-      errorMessages.push('Your cart is empty.');
-    }
-  
-    // Display error messages if any
-    if (!isValid) {
-      alert(errorMessages.join('\n'));
-    }
-  
-    return isValid;
-  }
-  
-  // Handle form submission
-  function handleFormSubmission(event) {
-    event.preventDefault();
 
-  // Initialize EmailJS
-  (function(){
-    emailjs.init('TxWfHxkiwwDm-p3Sx'); 
-  })();
+function validateForm() {
+  const form = document.getElementById('checkout-form');
+  let isValid = true;
+  const errorMessages = [];
 
-  
-    if (validateForm()) {
-      // Collect form data
-      const form = document.getElementById('checkout-form');
-      const name = form.elements['name'].value.trim();
-      const email = form.elements['email'].value.trim();
-      const phone = form.elements['phone'].value.trim();
-      const pickupDate = form.elements['pickup-date'].value;
-      const pickupTime = form.elements['pickup-time'].value;
-  
-      // Prepare order details
-      const orderDetails = cart.map(item => {
-        return `${item.quantity} x ${item.name} (${formatOptions(item.options)}) - $${(item.price * item.quantity).toFixed(2)}`;
-      }).join('\n');
-  
-      const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-  
-      // Email parameters
-      const emailParams = {
-        customer_name: name,
-        customer_email: email,
-        customer_phone: phone,
-        pickup_date: pickupDate,
-        pickup_time: pickupTime,
-        order_details: orderDetails,
-        total_amount: `$${totalAmount}`,
-      };
-  
-      // Send email using EmailJS
-      emailjs.send('service_db9lnnm', 'ramas_confirmation1', emailParams)
-        .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-  
-          // Clear cart and redirect
-          cart = [];
-          localStorage.removeItem('cart');
-          updateCartCount();
-  
-          alert('Thank you for your order! A confirmation email has been sent.');
-          window.location.href = 'confirmation.html';
-        })
-        .catch(function(error) {
-          console.log('FAILED...', error);
-          alert('There was an error submitting your order. Please try again.');
-        });
-    }
+  const name = form.elements['name'].value.trim();
+  const email = form.elements['email'].value.trim();
+  const phone = form.elements['phone'].value.trim();
+  const pickupDate = form.elements['pickup-date'].value;
+  const pickupTime = form.elements['pickup-time'].value;
+
+  // Validate Name
+  if (name === '') {
+    isValid = false;
+    errorMessages.push('Name is required.');
   }
+
+  // Validate Email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    isValid = false;
+    errorMessages.push('Please enter a valid email address.');
+  }
+
+  // Validate Phone
+  const phonePattern = /^\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/;
+  if (!phonePattern.test(phone)) {
+    isValid = false;
+    document.getElementById('phone-error').textContent = 'Please enter a valid phone number.';
+  }
+
+  // Validate Pickup Date and Time
+if (pickupDate === '') {
+  isValid = false;
+  errorMessages.push('Pickup date is required.');
+}
+if (pickupTime === '') {
+  isValid = false;
+  errorMessages.push('Pickup time is required.');
+}
+
+// Check if cart is empty
+if (cart.length === 0) {
+  isValid = false;
+  errorMessages.push('Your cart is empty.');
+}
+
+if (!isValid) {
+  alert(errorMessages.join('\n'));
+}
+
+return isValid;
+}
+
+function handleFormSubmission(event) {
+  event.preventDefault();
+  if (!validateForm()) {
+    return;
+  }
+  console.log(JSON.stringify(JSON.parse(localStorage.getItem('cart')), null, 2));
+
+
+  // If valid, gather raw form data
+  const form = document.getElementById('checkout-form');
+  const name = form.elements['name'].value.trim();
+  const email = form.elements['email'].value.trim();
+  const phone = form.elements['phone'].value.trim();
+  const pickupDate = form.elements['pickup-date'].value;
+  const pickupTime = form.elements['pickup-time'].value;
+  const orderType = document.getElementById('orderType').value;
+
+  // Calculate total from cart
+  const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   
-    
-  // Set minimum date for pickup date input
+  
+  const bodyData = {
+    customer: {
+      name: form.elements['name'].value.trim(),
+      email: form.elements['email'].value.trim(),
+      phone: form.elements['phone'].value.trim(),
+    },
+    pickup: {
+      date: form.elements['pickup-date'].value,
+      time: form.elements['pickup-time'].value,
+    },
+    items: cart.map(item => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      instructions: item.instructions || '',
+      options: item.options || {} // include the options here!
+    })),
+    total: parseFloat(totalAmount),
+    orderType: document.getElementById('orderType').value
+  };
+  
+  console.log('Order Payload:', bodyData); // Debug: verify payload before sending
+  
+
+  // POST to server
+  fetch('http://localhost:3000/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        // validation error
+        alert(`Validation error: ${data.error}`);
+      } else if (data.message) {
+        // success message
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartCount();
+
+        alert(`Thank you for your order! Order #${data.orderId || 'unknown'} has been placed.`);
+        window.location.href = 'confirmation.html';
+      } else {
+        alert('There was an error submitting your order. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error submitting order:', error);
+      alert('There was an error submitting your order. Please try again.');
+    });
+}
+
 function setMinPickupDate() {
-    const pickupDateInput = document.getElementById('pickup-date');
-    const today = new Date().toISOString().split('T')[0];
-    pickupDateInput.setAttribute('min', today);
+  const pickupDateInput = document.getElementById('pickup-date');
+  const today = new Date().toISOString().split('T')[0];
+  pickupDateInput.setAttribute('min', today);
+}
+
+
+
+// Event for the “Customize & Add” button
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('customize-button')) {
+    const itemId = event.target.dataset.itemId;
+    openCustomizationModal(itemId);
   }
+});

@@ -1,10 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <script src="menu.js"></script>
-<script src="script.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<nav id="navigation">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Rama-Jama's</title>
+  <link rel="stylesheet" href="styles3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <nav id="navigation">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
@@ -16,25 +20,20 @@
       </li>
     </ul>
   </nav>
-<head>
-  <meta charset="UTF-8">
-  <title>Your Cart - Rama-Jama's</title>
-  <link rel="stylesheet" href="styles3.css">
-</head>
-<body>
+
   <header>
     <h1>Your Cart</h1>
   </header>
 
-  <main id="cart-container">
-    <!-- Cart items will be displayed here -->
-  </main>
+  <main id="cart-container"></main>
 
   <footer>
-    <button id="checkout-button" onclick="window.location.href='Checkout.html'">Proceed to Checkout</button>
+    <!-- Proceed to a new checkout page -->
+    <button id="checkout-button" onclick="window.location.href='checkout.html'">
+      Proceed to Checkout
+    </button>
   </footer>
 
-  <!-- Include JavaScript files -->
   <script src="menu.js"></script>
   <script src="script.js"></script>
 </body>
