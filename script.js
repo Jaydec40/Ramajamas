@@ -719,7 +719,7 @@ function handleFormSubmission(event) {
   console.log("Order Payload:", JSON.stringify(bodyData, null, 2));
 
   // Send the order payload to your backend
-  fetch('http://localhost:3000/api/orders', {
+  fetch('https://www.ramajamasttown.com/api/orders', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData)
@@ -727,7 +727,6 @@ function handleFormSubmission(event) {
   .then(response => response.json())
   .then(data => {
     console.log('Order submitted successfully:', data);
-    // Redirect to thankyou.html if the order was successful
     window.location.href = 'confirmation.html';
   })
   .catch(error => {
