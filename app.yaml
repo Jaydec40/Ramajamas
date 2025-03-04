@@ -1,6 +1,5 @@
 runtime: nodejs18
 env: standard
-args: ["app", "deploy", "Ramajamas/app.yaml", "--quiet"]
 handlers:
   - url: /.*
     script: auto
