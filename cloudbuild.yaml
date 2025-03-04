@@ -5,6 +5,6 @@ steps:
       "app", "deploy", "app.yaml", "--quiet"
     ]
 logsBucket: "gs://rama-jamas-logs"
-serviceAccount: "projects/rama-jamas/serviceAccounts/314@rama-jamas.iam.gserviceaccount.com"
+serviceAccount: "projects/rama-jamas/serviceAccounts/315796681471-compute@developer.gserviceaccount.com"
 options:
   logging: GCS_ONLY
