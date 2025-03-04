@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      "app", "deploy", "app.yaml", "--quiet"
+    ]
+logsBucket: "gs://rama-jamas-logs"
+serviceAccount: "projects/rama-jamas/serviceAccounts/314@rama-jamas.iam.gserviceaccount.com"
+options:
+  logging: GCS_ONLY
