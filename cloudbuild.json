@@ -11,7 +11,7 @@
       ]
     }
   ],
-  "logsBucket": "gs://rama-jamas-logs",
+  "logsBucket": "gs://rama-jamas-bucket",
   "serviceAccount": "projects/rama-jamas/serviceAccounts/315796681471-compute@developer.gserviceaccount.com",
   "options": {
     "logging": "GCS_ONLY"
