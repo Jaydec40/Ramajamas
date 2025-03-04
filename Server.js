@@ -14,7 +14,8 @@ const corsOptions = {
   origin: [
     'http://localhost:5500',
     'http://127.0.0.1:5500',
-    'https://www.ramajamasttown.com'
+    'https://www.ramajamasttown.com',
+    'https://rama-jamas.uc.r.appspot.com'
   ],
   optionsSuccessStatus: 200,
 };
