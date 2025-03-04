@@ -719,11 +719,11 @@ function handleFormSubmission(event) {
   console.log("Order Payload:", JSON.stringify(bodyData, null, 2));
 
   // Send the order payload to your backend
-fetch('https://rama-jamas.uc.r.appspot.com', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(bodyData)
-})
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData)
+  })
   .then(response => response.json())
   .then(data => {
     console.log('Order submitted successfully:', data);
