@@ -18,31 +18,18 @@ const corsOptions = {
   ],
   optionsSuccessStatus: 200,
 };
+
+// Use CORS middleware
 app.use(cors(corsOptions));
+// Explicitly handle preflight OPTIONS requests for all routes
+app.options('*', cors(corsOptions));
 
-// Parse JSON request bodies
 app.use(express.json());
-function isBusinessOpen() {
-  const now = new Date();
-  const hour = now.getHours();   // 0-23
-  // 8 <= hour < 20 means 8:00 AM to 7:59 PM
-  // (so 8:00 PM => hour=20 is closed)
-  return hour >= 8 && hour < 20;
-}
 
-// In server.js or a route file:
+// Sample route to check API status
 app.get('/api/status', (req, res) => {
-  const open = isBusinessOpen();
-  if (open) {
-    res.json({ status: 'open', message: 'We are currently open!' });
-  } else {
-    res.json({ status: 'closed', message: 'We are currently closed.' });
-  }
+  res.json({ status: 'open', message: 'We are currently open!' });
 });
-
-// Mongoose model + validation schema
-const { orderSchema } = require('./Validation');
-const Order = require('./order'); // <- your Mongoose model
 
 // Connect to MongoDB
 mongoose
@@ -54,10 +41,9 @@ mongoose
     console.error('MongoDB connection error:', err);
   });
 
-
 // Root route 
 app.get('/', (req, res) => {
-  res.send('Order received test ');
+  res.send('Order received test');
 });
 
 // POST /api/orders - Create a new order
@@ -65,14 +51,15 @@ app.post('/api/orders', async (req, res) => {
   console.log("Received order payload:", JSON.stringify(req.body, null, 2));
   const order = req.body;
   
-  // Validate the request body with Joi
-  const { error } = orderSchema.validate(order);
+  // Validate the request body (using your Joi schema)
+  const { error } = require('./Validation').orderSchema.validate(order);
   if (error) {
     console.error('Validation error:', error);
     return res.status(400).json({ error: error.details[0].message });
   }
   
   try {
+    const Order = require('./order');
     const newOrder = new Order(order);
     const savedOrder = await newOrder.save();
     console.log("Saved order to DB:", JSON.stringify(savedOrder, null, 2));
