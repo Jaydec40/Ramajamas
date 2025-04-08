@@ -12,13 +12,18 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: 'https://www.ramajamasttown.com',
-  optionsSuccessStatus: 200,
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type,Authorization',
+  optionsSuccessStatus: 200, // For legacy browser support
 };
 
+// Use CORS middleware with the defined options
 app.use(cors(corsOptions));
+
+// Explicitly handle preflight OPTIONS requests for all routes
 app.options('*', cors(corsOptions));
 
-
+// Other middleware (e.g., parsing JSON) should come after CORS setup.
 app.use(express.json());
 
 // Sample route to check API status
