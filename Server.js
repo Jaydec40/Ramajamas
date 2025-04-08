@@ -11,18 +11,13 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: [
-    'http://localhost:5500',
-    'http://127.0.0.1:5500',
-    'https://www.ramajamasttown.com'
-  ],
+  origin: 'https://www.ramajamasttown.com',
   optionsSuccessStatus: 200,
 };
 
-// Use CORS middleware
 app.use(cors(corsOptions));
-// Explicitly handle preflight OPTIONS requests for all routes
 app.options('*', cors(corsOptions));
+
 
 app.use(express.json());
 
