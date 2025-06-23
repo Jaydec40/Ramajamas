@@ -125,33 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkoutForm = document.getElementById('checkout-form');
     checkoutForm.addEventListener('submit', handleFormSubmission);
   }
-  document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('checkout-container')) {
-      // Display the order summary, etc.
-      displayOrderSummary();
-      
-      
-      setOperatingHours();
-  
-      // Handle form submission
-      const checkoutForm = document.getElementById('checkout-form');
-      checkoutForm.addEventListener('submit', handleFormSubmission);
-    }
-  });
-  
-
-  // Check if we are on the checkout page
-  if (document.getElementById('checkout-container')) {
-    displayOrderSummary();
-
-    // Set min date for pickup date
-    setMinPickupDate();
-
-    // Handle form submission
-    const checkoutForm = document.getElementById('checkout-form');
-    checkoutForm.addEventListener('submit', handleFormSubmission);
-  }
-
+ 
   // Cart nav link
   const cartLink = document.getElementById('cart-link');
   if (cartLink) {
@@ -835,17 +809,5 @@ function setOperatingHours() {
   pickupDateInput.addEventListener('change', updateTimeLimits);
 }
 
-// On DOMContentLoaded in your checkout page block:
-document.addEventListener('DOMContentLoaded', function() {
-  if (document.getElementById('checkout-container')) {
-    displayOrderSummary();
 
-    // Replace your current setMinPickupDate() call with:
-    setOperatingHours();
-
-    // Handle form submission
-    const checkoutForm = document.getElementById('checkout-form');
-    checkoutForm.addEventListener('submit', handleFormSubmission);
-  }
-});
 
